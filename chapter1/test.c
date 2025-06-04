@@ -27,22 +27,19 @@ int main() {
 }
 
 int gtline(char line[], int size) {
-    int c, i;
-    while((c = getchar()) != EOF) {
-        for(i = 0; (i < size) && (i != '\n'); i++) {
-            line[i] = c;
-        }
-        if(c == '\n') {
-            line[i] = c;
-            line[i + 1] = '\0';
-        }
+    int i, c;
+    for(i = 0; (i < size - 1) && (c = getchar()) != EOF && c != '\n'; i++) {
+        line[i] = c;
     }
     if(i == 0)
         return 0;
-    else if(c == EOF)
-        return 0;
-    else
-        return i + 1;
+    else if(c == '\n') {
+        line[i] = '\n';
+        i++;
+        line[i] = '\0';
+    }
+
+    return i;
 }
 
 void copy(char from[], char to[]) {
