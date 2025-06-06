@@ -3,8 +3,8 @@
 // not runnable
 int main() {
     int c;
-    int x = 1;
     int i = 0;
+    int x = 1;
     while(x == 1) {
         if(i > lim -1)
             x = 0;
