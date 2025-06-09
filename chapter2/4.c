@@ -12,37 +12,13 @@ int main() {
 }
 
 void squeeze(char s1[], char s2[]) {
-    // find actual null
-    int i;
-    for(i = 0; i != '\0'; ++i);
-    char temp[i];
-
-    // replace characters to remove with nulls
-    int a, b;
-    a = b = 0;
-    while(s2[a] != '\0') {
-        while(s2[a] == s1[b]) {
-            s1[b] = '\0';
-            ++b;
+    int i, j;
+    int keepindex = 0;
+    for(i = 0; s1[i] != '\0'; i++) {
+        for(j = 0; s2[j] != '\0' && s1[i] != s2[j]; j++);
+        if(s1[i] != s2[j]) {
+            s1[keepindex++] = s1[i];
         }
-        ++a;
-        b = 0;
     }
-
-    // initiliaze result to temp array
-    a = b = 0;
-    while(a != i + 1) {
-        if(s1[a] != '\0') {
-            temp[b] = s1[a];
-            ++b;
-        }
-        ++a;
-    }
-    temp[b] = '\0';
-
-    // copy temp array to s1
-    for(i = 0; temp[i] != '\0'; ++i) {
-        s1[i] = temp[i];
-    }
-    temp[i] = '\0';
+    s1[keepindex] = s1[i];
 }
